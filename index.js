@@ -12,11 +12,14 @@ function game(){
 function playRound(round) {
    const humanSelection = humanChoice();
    const compSelection = compChoice();
-   console.log("Computer chose "(compSelection));
+   console.log("Computer chose "compSelection);
    const winner = checkWinner(humanSelection, compSelection);
-   winners.push(winner);
-   logRound(humanSelection, compSelection, winner, round)
+   //winners.push(winner);
+  console.log(winners);
+  console.log(humanSelection, compSelection, winner, round);
+  logRound(humanSelection, compSelection, winner, round)
 }
+
 function humanChoice(){
     let input = prompt("Type Rock, Paper or Scissors");
     while (input == null){
@@ -34,29 +37,12 @@ function humanChoice(){
     input = input.toLowerCase();
     check = validateInput(input);
     
-console.log(input);
-
-function compChoice(){
-    return choices[Math.floor(Math.random*choices.length)];
+console.log("input", input);
+    
 }
 
 function validateInput(choice){
     return choices.includes(choice);
-}
-
-function checkWinner(choiceH, choiceC){
-    if(choiceH === choiceC){
-        return "Tie";
-
-    } else if (
-        (choiceH === "rock" && choiceC == "scissors") ||
-        (choiceH === "paper" && choiceC == "rock") || 
-        (choiceH === "scissors" && choiceC == "paper")
-        ) {
-        return "Human"
-    } else {
-    return "Computer"
-}
 }
 
 function logWins() {
@@ -76,4 +62,23 @@ function logRound(humanChoice, compChoice, winner, round){
     console.log(winner, "Won the Round!");
     console.log("☆*: .｡. o(≧▽≦)o .｡.:*☆");
 }
+
+function compChoice() {
+    return choices[Math.floor(Math.random * choices.length)];
 }
+
+function checkWinner(choiceH, choiceC){
+    if(choiceH === choiceC){
+        return "Tie";
+
+    } else if (
+        (choiceH === "rock" && choiceC == "scissors") ||
+        (choiceH === "paper" && choiceC == "rock") || 
+        (choiceH === "scissors" && choiceC == "paper")
+        ) {
+        return "Human"
+    } else {
+    return "Computer"
+}
+}
+
